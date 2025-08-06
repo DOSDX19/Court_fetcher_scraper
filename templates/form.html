@@ -1,0 +1,18 @@
+<h2>Court Data Fetcher</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+</form>
+
+{% if error %}
+<p style="color:red">{{ error }}</p>
+{% endif %}
+
+{% if data %}
+<h3>Result:</h3>
+<p><strong>Parties:</strong> {{ data.parties }}</p>
+<p><strong>Filing Date:</strong> {{ data.filing_date }}</p>
+<p><strong>Next Hearing:</strong> {{ data.next_hearing }}</p>
+<p><a href="{{ data.latest_pdf }}">Download Latest Order</a></p>
+{% endif %}
